@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="width=device-width">
+    <script src='file:///android_asset/app.js'></script>
+
+    <!-- site css -->
+    <link href="Html/site.min.css"rel="stylesheet">
+
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+ 
+    <script src="Html/site.js"></script>
+
+
+
+  </head>
+  <body style="background-color: #f1f2f6;">
+   
+      <!--nav-->
+      <nav class="navbar navbar-default navbar-custom" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+                <ol class="breadcrumb breadcrumb-arrow">
+                  <li><a href="start.html"><i class="fas fa-home"></i>.</a></li>   
+                  <li><a href="url.html"><i class="fas fa-edit"></i> URL</a></li>
+                  <li class="active"><a href="pics.html"><i class="fas fa-images"></i> Scan</a></li>
+                  <li><span><i class="fas fa-download"></i> Download</span></li>
+                </ol>   
+            </div>
+
+        </div>
+      </nav> 
+         <div class="col-md-12">        
+               <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title"><i class="fas fa-images"></i><b> Choose Images to download</b></h3>
+              </div>
+              <div class="panel-body">
+                <p>Select the images you want to download and click Next to grab the files.</p>
+                      <div class="col-md-12" id="picsList">
+
+                      </div>
+               </div>
+
+
+
+
+
+
+              </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+         <p align="right"><a href="url.html" class="btn btn-default" role="button">< Back</a> <a href="" class="btn btn-primary" role="button" onclick="saveFile()">Next ></a></p>
+          </div>
+          
+          <script type="text/javascript">
+          var pixSrc=[];
+   $(document).ready(function() {
+         $('#selectAll').click(function(){
+    $('input:checkbox').attr('checked', true)});
+         fldr = app.GetPrivateFolder( "xtraham" );
+    var myPics = app.ReadFile(fldr + "/src.txt");
+    var src = myPics.split(",");
+    var len = src.length;
+    var s1 = "<label>" + len + " Total Pix Found</label><div class='checkbox'><input type='checkbox' id='selectAll' ><label for='selectAll'>Select All Pix</label></div>";
+  for (i=0; i<len; ++i) {
+     var s = src[i];
+     var name = s.substr(-12);
+      s1 += "<div class='checkbox'><input type='checkbox' name='pix' id='flat-checkbox-"+i+"'><a href='"+s+"'>" + name + "</a></div>";
+ }
+
+     
+   document.getElementById("picsList").innerHTML=s1;
+   
+   app.HideProgress();
+
+     });
+         
+
+    </script>
+            </body>
+            </html>

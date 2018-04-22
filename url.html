@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="width=device-width">
+    <script src='file:///android_asset/app.js'></script>
+
+    <!-- site css -->
+    <link rel="stylesheet" href="html/site.min.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <script type="text/javascript" src="html/site.js"></script>
+  </head>
+  <body style="background-color: #f1f2f6;">
+   
+      <!--nav-->
+      <nav class="navbar navbar-default navbar-custom" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+                <ol class="breadcrumb breadcrumb-arrow">
+                  <li><a href="XtraHam.html"><i class="fas fa-home"></i>.</a></li>   
+                  <li class="active"><a href="url.html"><i class="fas fa-edit"></i> URL</a></li>
+                  <li><span><i class="fas fa-images"></i> Scan</span></li>
+                  <li><span><i class="fas fa-download"></i> Download</span></li>
+                </ol>   
+            </div>
+
+        </div>
+      </nav> 
+         <div class="col-md-12">        
+               <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title"><i class="fas fa-edit"></i><b> Enter Gallery URL</b></h3>
+              </div>
+              <div class="panel-body">
+                <p>Enter the URL of the gallery you want to download and adjust the settings as you see fit.</p>
+                      <div class="col-xs-12">
+                        <label>Gallery URL</label>
+                        <input type="url" class="form-control" id="urlTxt">
+                      </div>
+                      <div class="col-xs-12">
+                        <label>Save Location</label>
+                    <div class="input-group form-search">
+                  <input type="text" class="form-control" value="/sdcard/xtraHam">
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary" data-type="last">Browse</button>
+                  </span>
+                   </div>
+                   </div>
+                 <div class="col-xs-12">
+               <div class="checkbox">
+                  <input type="checkbox" id="flat-checkbox-1">
+                  <label for="flat-checkbox-1">Follow Links</label>
+                </div>
+                </div>
+             </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+         <p align="right"><a href="start.html" class="btn btn-default" role="button">< Back</a> <a href="" class="btn btn-primary" role="button" onclick="saveFile()">Next ></a></p>
+          </div>
+          
+          <script>
+          function saveFile() {
+              var url = document.getElementById('urlTxt').value;
+              
+              if (url == ""){
+							alert("You must enter a url to continue");
+							return
+              }
+              app.WriteFile("/sdcard/url.txt", url);
+              app.Execute("SendRequest('" + url + "')");
+ 
+          }
+ 
+
+          
+          </script>
+            </body>
+            </html>
